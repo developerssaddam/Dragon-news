@@ -1,11 +1,14 @@
 import { Helmet } from "react-helmet-async";
+import Header from "../../components/Header/Header";
 
 const Home = () => {
   return (
-    <div>
+    <div className="py-10">
       <Helmet>
         <title>Dragon news | Home</title>
       </Helmet>
+
+      <Header />
     </div>
   );
 };
