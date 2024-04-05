@@ -1,17 +1,17 @@
 import { Helmet } from "react-helmet-async";
 import NavBar from "../../components/NavBar/NavBar";
 
-const Carrer = () => {
+const Login = () => {
   return (
     <div>
       <Helmet>
-        <title>Dragon news | Carrer</title>
+        <title>Dragon news | Login</title>
       </Helmet>
 
       <NavBar />
-      <h1>Carrer page</h1>
+      <h1>Login</h1>
     </div>
   );
 };
 
-export default Carrer;
+export default Login;
