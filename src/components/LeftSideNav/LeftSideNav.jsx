@@ -23,7 +23,7 @@ const LeftSideNav = () => {
   }, []);
 
   return (
-    <div>
+    <div className="p-4">
       <h2 className="mb-3 font-semibold text-lg ">All Caterogy</h2>
 
       <div id="active" className="mb-3">

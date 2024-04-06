@@ -23,6 +23,7 @@ const Home = () => {
       <main className="grid grid-cols-1 md:grid-cols-4 gap-5">
         <LeftSideNav />
         <div className="md:col-span-2">
+          <h2 className="mb-3 font-semibold text-lg">Dragon News Home</h2>
           {news.map((item, index) => (
             <Content key={index} data={item} />
           ))}

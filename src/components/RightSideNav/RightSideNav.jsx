@@ -70,33 +70,33 @@ const RightSideNav = () => {
   };
 
   return (
-    <div>
+    <div className="w-full">
       <h2 className="text-lg font-semibold mb-3">Login With</h2>
 
       <button
         onClick={handleLoginWithFacebook}
-        className="flex items-center gap-3 border-2 py-3 text-lg font-medium rounded-md w-full text-center justify-center mb-3"
+        className="flex items-center gap-3 border-2 py-3 px-2 text-lg font-medium rounded-md w-full text-center justify-center mb-3"
       >
         <FaFacebookF /> Login With Facebook
       </button>
 
       <button
         onClick={handleLoginWithGoogle}
-        className="flex items-center gap-3 border-2 py-3 text-lg font-medium rounded-md w-full text-center justify-center mb-3"
+        className="flex items-center gap-3 border-2 px-2 py-3 text-lg font-medium rounded-md w-full text-center justify-center mb-3"
       >
         <GrGoogle /> Login With Google
       </button>
 
       <button
         onClick={handleLoginWithTwitter}
-        className="flex items-center gap-3 border-2 py-3 text-lg font-medium rounded-md w-full text-center justify-center mb-3"
+        className="flex items-center gap-3 border-2 py-3 px-2 text-lg font-medium rounded-md w-full text-center justify-center mb-3"
       >
         <FaTwitter /> Login With Twitter
       </button>
 
       <button
         onClick={handleLoginWithGithub}
-        className="flex items-center gap-3 border-2 py-3 text-lg font-medium rounded-md w-full text-center justify-center mb-3"
+        className="flex items-center gap-3 border-2 py-3 px-2 text-lg font-medium rounded-md w-full text-center justify-center mb-3"
       >
         <FaGithub /> Login With Github
       </button>
@@ -127,7 +127,7 @@ const RightSideNav = () => {
         </div>
       </div>
 
-      <div className="qzone bg-[#F3F3F3] p-4 *:mb-3 mb-8">
+      <div className="qzone flex gap-3 lg:flex-row bg-[#F3F3F3] p-4 *:mb-3 mb-8">
         <Link>
           <img src={qZone1} alt="" />
         </Link>
@@ -140,7 +140,9 @@ const RightSideNav = () => {
       </div>
 
       <div className="amazing bg-[#04041F] text-white p-4 space-y-6 text-center">
-        <h2 className="text-3xl font-bold">Create an Amazing Newspaper</h2>
+        <h2 className="text-xl lg:text-3xl font-bold">
+          Create an Amazing Newspaper
+        </h2>
         <p>
           Discover thousands of options, easy to customize layouts, one-click to
           import demo and much more.

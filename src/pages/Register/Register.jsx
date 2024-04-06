@@ -44,7 +44,7 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <div className="p-3">
       <Helmet>
         <title>Dragon news | Register</title>
       </Helmet>
