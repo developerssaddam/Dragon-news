@@ -10,7 +10,12 @@ import { AuthContext } from "../../providers/AuthProviders";
 import { toast } from "react-toastify";
 
 const RightSideNav = () => {
-  const { loginWithGoogle, loginWithGithub } = useContext(AuthContext);
+  const {
+    loginWithGoogle,
+    loginWithGithub,
+    loginWithTwitter,
+    loginWithFacebook,
+  } = useContext(AuthContext);
 
   // handleLoginWithGoogle.
   const handleLoginWithGoogle = () => {
@@ -38,9 +43,42 @@ const RightSideNav = () => {
       });
   };
 
+  // handleLoginWithTwitter.
+  const handleLoginWithTwitter = () => {
+    loginWithTwitter()
+      .then((result) => {
+        toast.success("User login successfull!");
+        console.log(result.user);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+        console.log(error.message);
+      });
+  };
+
+  // handleLoginWithFacebook.
+  const handleLoginWithFacebook = () => {
+    loginWithFacebook()
+      .then((result) => {
+        toast.success("User login successfull!");
+        console.log(result.user);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+        console.log(error.message);
+      });
+  };
+
   return (
     <div>
       <h2 className="text-lg font-semibold mb-3">Login With</h2>
+
+      <button
+        onClick={handleLoginWithFacebook}
+        className="flex items-center gap-3 border-2 py-3 text-lg font-medium rounded-md w-full text-center justify-center mb-3"
+      >
+        <FaFacebookF /> Login With Facebook
+      </button>
 
       <button
         onClick={handleLoginWithGoogle}
@@ -50,10 +88,17 @@ const RightSideNav = () => {
       </button>
 
       <button
+        onClick={handleLoginWithTwitter}
+        className="flex items-center gap-3 border-2 py-3 text-lg font-medium rounded-md w-full text-center justify-center mb-3"
+      >
+        <FaTwitter /> Login With Twitter
+      </button>
+
+      <button
         onClick={handleLoginWithGithub}
         className="flex items-center gap-3 border-2 py-3 text-lg font-medium rounded-md w-full text-center justify-center mb-3"
       >
-        <FaGithub /> Login With Google
+        <FaGithub /> Login With Github
       </button>
 
       <div className="find_us my-8">

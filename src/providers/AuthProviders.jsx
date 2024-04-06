@@ -1,8 +1,10 @@
 import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import {
+  FacebookAuthProvider,
   GithubAuthProvider,
   GoogleAuthProvider,
+  TwitterAuthProvider,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -14,6 +16,8 @@ import auth from "../firebase/firebase.config";
 export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
+const twitterProvider = new TwitterAuthProvider();
 
 const AuthProviders = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -49,6 +53,18 @@ const AuthProviders = ({ children }) => {
     return signInWithPopup(auth, githubProvider);
   };
 
+  // LoginWithFacebook
+  const loginWithFacebook = () => {
+    setLoading(true);
+    return signInWithPopup(auth, facebookProvider);
+  };
+
+  // LoginWithTwitter
+  const loginWithTwitter = () => {
+    setLoading(true);
+    return signInWithPopup(auth, twitterProvider);
+  };
+
   // Observer function.
   useEffect(() => {
     const unsubScribe = onAuthStateChanged(auth, (logedinUser) => {
@@ -68,6 +84,8 @@ const AuthProviders = ({ children }) => {
     loading,
     loginWithGoogle,
     loginWithGithub,
+    loginWithFacebook,
+    loginWithTwitter,
   };
 
   return (
