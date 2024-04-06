@@ -5,17 +5,54 @@ import qZone1 from "../../assets/qZone1.png";
 import qZone2 from "../../assets/qZone2.png";
 import qZone3 from "../../assets/qZone3.png";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProviders";
+import { toast } from "react-toastify";
 
 const RightSideNav = () => {
+  const { loginWithGoogle, loginWithGithub } = useContext(AuthContext);
+
+  // handleLoginWithGoogle.
+  const handleLoginWithGoogle = () => {
+    loginWithGoogle()
+      .then((result) => {
+        toast.success("User login successfull!");
+        console.log(result.user);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+        console.log(error.message);
+      });
+  };
+
+  // handleLoginWithGoogle.
+  const handleLoginWithGithub = () => {
+    loginWithGithub()
+      .then((result) => {
+        toast.success("User login successfull!");
+        console.log(result.user);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+        console.log(error.message);
+      });
+  };
+
   return (
     <div>
       <h2 className="text-lg font-semibold mb-3">Login With</h2>
 
-      <button className="flex items-center gap-3 border-2 py-3 text-lg font-medium rounded-md w-full text-center justify-center mb-3">
+      <button
+        onClick={handleLoginWithGoogle}
+        className="flex items-center gap-3 border-2 py-3 text-lg font-medium rounded-md w-full text-center justify-center mb-3"
+      >
         <GrGoogle /> Login With Google
       </button>
 
-      <button className="flex items-center gap-3 border-2 py-3 text-lg font-medium rounded-md w-full text-center justify-center mb-3">
+      <button
+        onClick={handleLoginWithGithub}
+        className="flex items-center gap-3 border-2 py-3 text-lg font-medium rounded-md w-full text-center justify-center mb-3"
+      >
         <FaGithub /> Login With Google
       </button>
 
