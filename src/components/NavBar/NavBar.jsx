@@ -1,7 +1,16 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import avatar from "../../assets/user.png";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProviders";
 
 const NavBar = () => {
+  const { user, logoutUsre } = useContext(AuthContext);
+
+  // handleLogout.
+  const handleLogout = () => {
+    logoutUsre();
+  };
+
   const links = (
     <>
       <li>
@@ -55,9 +64,20 @@ const NavBar = () => {
       </div>
       <div className="navbar-end">
         <img className="w-10 mr-5" src={avatar} alt="" />
-        <button className="px-4 py-2 rounded-md font-semibold bg-[#403F3F] text-white">
-          Login
-        </button>
+        {user ? (
+          <button
+            onClick={handleLogout}
+            className="px-4 py-2 rounded-md font-semibold bg-[#403F3F] text-white"
+          >
+            Logout
+          </button>
+        ) : (
+          <Link to="/login">
+            <button className="px-4 py-2 rounded-md font-semibold bg-[#403F3F] text-white">
+              Login
+            </button>
+          </Link>
+        )}
       </div>
     </nav>
   );

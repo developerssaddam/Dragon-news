@@ -5,8 +5,10 @@ import NavBar from "../../components/NavBar/NavBar";
 import LeftSideNav from "../../components/LeftSideNav/LeftSideNav";
 import Content from "./Content";
 import RightSideNav from "../../components/RightSideNav/RightSideNav";
+import { useLoaderData } from "react-router-dom";
 
 const Home = () => {
+  const news = useLoaderData();
   return (
     <div className="py-10">
       <Helmet>
@@ -21,7 +23,9 @@ const Home = () => {
       <main className="grid grid-cols-1 md:grid-cols-4 gap-5">
         <LeftSideNav />
         <div className="md:col-span-2">
-          <Content />
+          {news.map((item, index) => (
+            <Content key={index} data={item} />
+          ))}
         </div>
         <RightSideNav />
       </main>
