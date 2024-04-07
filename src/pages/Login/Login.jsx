@@ -20,8 +20,22 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
 
+  // handleLoginMethods.
+  const handleSocialLogin = (loginMethods) => {
+    loginMethods()
+      .then((result) => {
+        toast.success("User login successfull!");
+        location?.state ? navigate(location.state) : navigate("/");
+        console.log(result.user);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+        console.log(error.message);
+      });
+  };
+
   // LoginWith Email and Password.
-  const handleLogin = (e) => {
+  const handleLoginWithEmailAndPassword = (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
     const email = data.get("email");
@@ -40,58 +54,22 @@ const Login = () => {
 
   // LoginWith Google.
   const handleLoginWithGoogle = () => {
-    loginWithGoogle()
-      .then((result) => {
-        toast.success("User login successfull!");
-        location?.state ? navigate(location.state) : navigate("/");
-        console.log(result.user);
-      })
-      .catch((error) => {
-        toast.error(error.message);
-        console.log(error.message);
-      });
+    handleSocialLogin(loginWithGoogle);
   };
 
   // LoginWith GitHub.
   const handleLoginWithGithub = () => {
-    loginWithGoogle()
-      .then((result) => {
-        toast.success("User login successfull!");
-        location?.state ? navigate(location.state) : navigate("/");
-        console.log(result.user);
-      })
-      .catch((error) => {
-        toast.error(error.message);
-        console.log(error.message);
-      });
+    handleSocialLogin(loginWithGoogle);
   };
 
   // handleLoginWithFacebook.
   const handleLoginWithFacebook = () => {
-    loginWithFacebook()
-      .then((result) => {
-        toast.success("User login successfull!");
-        location?.state ? navigate(location.state) : navigate("/");
-        console.log(result.user);
-      })
-      .catch((error) => {
-        toast.error(error.message);
-        console.log(error.message);
-      });
+    handleSocialLogin(loginWithFacebook);
   };
 
   // handleLoginWithTwitter.
   const handleLoginWithTwitter = () => {
-    loginWithTwitter()
-      .then((result) => {
-        toast.success("User login successfull!");
-        location?.state ? navigate(location.state) : navigate("/");
-        console.log(result.user);
-      })
-      .catch((error) => {
-        toast.error(error.message);
-        console.log(error.message);
-      });
+    handleSocialLogin(loginWithTwitter);
   };
 
   return (
@@ -105,7 +83,10 @@ const Login = () => {
       <div>
         <div className="w-full mx-auto my-10 max-w-md p-8 space-y-3 rounded-xl bg-[#E8E9EB] text-gray-900">
           <h1 className="text-2xl font-bold text-center">Login</h1>
-          <form onSubmit={handleLogin} className="space-y-6">
+          <form
+            onSubmit={handleLoginWithEmailAndPassword}
+            className="space-y-6"
+          >
             <div className="space-y-1 text-sm">
               <label className="block">Email</label>
               <input

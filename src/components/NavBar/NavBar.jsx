@@ -2,6 +2,8 @@ import { Link, NavLink } from "react-router-dom";
 import avatar from "../../assets/user.png";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
+import { toast } from "react-toastify";
+import "./NavBar.css";
 
 const NavBar = () => {
   const { user, logoutUsre } = useContext(AuthContext);
@@ -9,6 +11,7 @@ const NavBar = () => {
   // handleLogout.
   const handleLogout = () => {
     logoutUsre();
+    toast.success("User logout successfull!");
   };
 
   const links = (
@@ -52,6 +55,7 @@ const NavBar = () => {
             </svg>
           </div>
           <ul
+            id="ul"
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
@@ -60,20 +64,31 @@ const NavBar = () => {
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{links}</ul>
+        <ul id="ul" className="menu menu-horizontal px-1">
+          {links}
+        </ul>
       </div>
       <div className="navbar-end">
-        <img className="w-10 mr-5" src={avatar} alt="" />
+        {user?.photoURL ? (
+          <img
+            className="w-10 mr-5 rounded-full border p-[1px]"
+            src={user.photoURL}
+            alt=""
+          />
+        ) : (
+          <img className="w-10 mr-5" src={avatar} alt="" />
+        )}
+
         {user ? (
           <button
             onClick={handleLogout}
-            className="px-4 py-2 rounded-md font-semibold bg-[#403F3F] text-white"
+            className="px-4 py-2 rounded-md font-semibold bg-[#F100B7] text-white"
           >
             Logout
           </button>
         ) : (
           <Link to="/login">
-            <button className="px-4 py-2 rounded-md font-semibold bg-[#403F3F] text-white">
+            <button className="px-4 py-2 rounded-md font-semibold bg-[#F100B7] text-white">
               Login
             </button>
           </Link>
